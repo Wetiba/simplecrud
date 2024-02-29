@@ -1,0 +1,21 @@
+<!-- tasks/templates/tasks/task_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Detail</title>
+</head>
+<body>
+    <h1>Task Detail</h1>
+    <p>Title: {{ task.title }}</p>
+    <p>Description: {{ task.description }}</p>
+    <p>Completed: {% if task.completed %}Yes{% else %}No{% endif %}</p>
+    <p>Created at: {{ task.created_at }}</p>
+    <a href="{% url 'task_update' tasks.id %}">Edit</a>
+    <form action="{% url 'task_delete' tasks.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'task_list' %}">Back to List</a>
+</body>
+</html>
